@@ -45,7 +45,7 @@ const DEFAULT_VIDEOS: VideoItem[] = [
     description: 'Live performance',
     format: 'horizontal',
     thumbnail: '/media/fotos/DanzeriaKaminevox.jpg',
-    videoUrl: '/media/videos/OtroMundo.MP4',
+    videoUrl: '/media/videos/OtroMundo.mp4',
     position: 'left'
   },
   {
