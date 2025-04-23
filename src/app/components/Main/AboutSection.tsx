@@ -97,7 +97,7 @@ export default function AboutSection({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 relative">
-          <div className="md:col-span-2 font-mono text-sm leading-relaxed pr-8 md:border-r border-gray-300 text-white ">
+          <div className="md:col-span-2 font-mono text-sm leading-relaxed pr-8 md:border-r border-gray-300 text-white text-left">
             <p className="mb-6 text-base animate-fade-down animate-once">
               {content.paragraph1}
             </p>
@@ -108,14 +108,14 @@ export default function AboutSection({
               {content.paragraph3}
             </p>
           </div>
-          <div className="font-mono text-sm pl-8 md:pl-8 text-white mt-8 md:mt-0 animate-fade-left animate-once">
-            <div className="mb-12 bg-opacity-80 p-6 rounded-md ">
-              <p className="mb-4 text-lg">{content.supportedByTitle}</p>
-              <ul>
+          <div className="font-mono text-sm pl-0 text-white mt-8 md:mt-0 animate-fade-left animate-once text-left">
+            <div className="mb-12 p-0">
+              <p className="mb-4 text-lg text-left">{content.supportedByTitle}</p>
+              <ul className="text-left p-0 m-0">
                 {supportedBy.map((name, index) => (
                   <li
                     key={index}
-                    className="flex mb-2 transition-all hover:translate-x-1 duration-300"
+                    className="flex mb-2 transition-all hover:translate-x-1 duration-300 text-left pl-0"
                   >
                     <span className="mr-2 text-red-600">_</span>
                     <span>{name}</span>
@@ -124,13 +124,13 @@ export default function AboutSection({
               </ul>
             </div>
 
-            <div className="bg-opacity-80 p-6 rounded-md ">
-              <p className="mb-4 text-lg">{content.playedWithTitle}</p>
-              <ul>
+            <div className="p-0">
+              <p className="mb-4 text-lg text-left">{content.playedWithTitle}</p>
+              <ul className="text-left p-0 m-0">
                 {playedWith.map((name, index) => (
                   <li
                     key={index}
-                    className="flex mb-2 transition-all hover:translate-x-1 duration-300"
+                    className="flex mb-2 transition-all hover:translate-x-1 duration-300 text-left pl-0"
                   >
                     <span className="mr-2 text-red-600">_</span>
                     <span>{name}</span>
