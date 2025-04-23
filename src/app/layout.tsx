@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "KAMINEVOX",
   description: "KAMINEVOX official website",
   icons: {
-    icon: '/public/kaminevox.ico',
+    icon: '/Icon.jpg',
   },
 };
 
