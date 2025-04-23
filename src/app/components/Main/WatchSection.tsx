@@ -144,7 +144,8 @@ export default function WatchSection({ videos = DEFAULT_VIDEOS }: WatchSectionPr
             </div>
           </div>
 
-          <div className="w-full md:w-3/5 h-96 mt-4 md:mt-0">
+          {/* Modified second video to fill entire width */}
+          <div className="w-full md:w-3/5 h-[480px] mt-4 md:mt-0">
             <div
               className="h-full relative overflow-hidden rounded-lg group cursor-pointer hover:shadow-lg"
               onClick={() => handleVideoClick(firstRow[1])}
@@ -270,7 +271,6 @@ export default function WatchSection({ videos = DEFAULT_VIDEOS }: WatchSectionPr
       </div>
       {selectedVideo && (
         <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center">
-          {/* Contenedor para videos verticales */}
           {selectedVideo.format === 'vertical' ? (
             <div className="relative w-full h-full flex flex-col items-center justify-center p-4">
               <button
@@ -310,7 +310,6 @@ export default function WatchSection({ videos = DEFAULT_VIDEOS }: WatchSectionPr
               </div>
             </div>
           ) : (
-            // Contenedor para videos horizontales (mantiene el diseño original)
             <div className="relative max-w-screen-lg mx-auto p-4">
               <button
                 className="absolute -top-12 right-0 text-white p-2 z-10 hover:text-red-500"
