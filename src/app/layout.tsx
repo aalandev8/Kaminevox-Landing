@@ -3,6 +3,7 @@ import './globals.css';
 import { Metadata } from 'next';
 import { Navbar } from './components/Layout/Navbar';
 import { aileron } from './fonts';
+import Footer from './components/Layout/Footer';
 
 export const metadata: Metadata = {
   title: "KAMINEVOX",
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body className={`font-aileron bg-black text-white overflow-x-hidden`}>
         <Navbar />
         <main className="min-h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   );
