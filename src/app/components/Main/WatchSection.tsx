@@ -310,19 +310,19 @@ export default function WatchSection({ videos = DEFAULT_VIDEOS }: WatchSectionPr
               </div>
             </div>
           ) : (
-            <div className="relative max-w-screen-lg mx-auto p-4">
+            <div className="relative max-w-screen-lg mx-auto p-4 sm:p-8">
               <button
-                className="absolute -top-12 right-0 text-white p-2 z-10 hover:text-red-500"
+                className="absolute top-2 right-2 sm:top-0 sm:right-0 text-white p-2 z-10 hover:text-red-500"
                 onClick={handleCloseModal}
               >
-                <X className="w-8 h-8" />
+                <X className="w-6 h-6 sm:w-8 sm:h-8" />
               </button>
-              <div className="relative aspect-video bg-black rounded-lg overflow-hidden shadow-2xl">
+              <div className="relative aspect-video bg-black rounded-lg overflow-hidden shadow-2xl mx-auto my-4 sm:my-0">
                 <video
                   ref={videoRef}
                   src={selectedVideo.videoUrl}
                   poster={selectedVideo.thumbnail}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain sm:object-cover"
                   onClick={togglePlayPause}
                   preload="metadata"
                   playsInline
@@ -331,18 +331,18 @@ export default function WatchSection({ videos = DEFAULT_VIDEOS }: WatchSectionPr
                   className={`absolute inset-0 flex items-center justify-center ${isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100 bg-black bg-opacity-30'}`}
                   onClick={togglePlayPause}
                 >
-                  <div className="w-20 h-20 rounded-full bg-red-600 bg-opacity-80 flex items-center justify-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-red-600 bg-opacity-80 flex items-center justify-center">
                     {isPlaying ? (
-                      <Pause className="w-10 h-10 text-white" />
+                      <Pause className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                     ) : (
-                      <Play className="w-10 h-10 text-white" />
+                      <Play className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                     )}
                   </div>
                 </div>
               </div>
-              <div className="mt-4 text-white">
-                <h2 className="text-2xl font-bold">{selectedVideo.title}</h2>
-                <p className="text-gray-300">{selectedVideo.description}</p>
+              <div className="mt-4 text-white text-center sm:text-left">
+                <h2 className="text-xl sm:text-2xl font-bold">{selectedVideo.title}</h2>
+                <p className="text-gray-300 text-sm sm:text-base">{selectedVideo.description}</p>
               </div>
             </div>
           )}
