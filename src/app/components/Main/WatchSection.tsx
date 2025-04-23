@@ -113,7 +113,8 @@ export default function WatchSection({ videos = DEFAULT_VIDEOS }: WatchSectionPr
           WATCH
         </div>
         <div className="flex flex-col md:flex-row gap-4 mb-4">
-          <div className="w-full md:w-1/3 h-96">
+          {/* Video vertical con tamaño ajustado */}
+          <div className="w-full md:w-2/5 h-[520px] sm:h-[560px] md:h-[480px]">
             <div
               className="h-full relative overflow-hidden rounded-lg group cursor-pointer hover:shadow-lg"
               onClick={() => handleVideoClick(firstRow[0])}
@@ -123,7 +124,7 @@ export default function WatchSection({ videos = DEFAULT_VIDEOS }: WatchSectionPr
                   src={firstRow[0].thumbnail}
                   alt={firstRow[0].title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, 40vw"
                   priority={true}
                   className="object-cover"
                   quality={80}
@@ -143,7 +144,7 @@ export default function WatchSection({ videos = DEFAULT_VIDEOS }: WatchSectionPr
             </div>
           </div>
 
-          <div className="w-full md:w-2/3 h-96 mt-4 md:mt-0">
+          <div className="w-full md:w-3/5 h-96 mt-4 md:mt-0">
             <div
               className="h-full relative overflow-hidden rounded-lg group cursor-pointer hover:shadow-lg"
               onClick={() => handleVideoClick(firstRow[1])}
@@ -153,7 +154,7 @@ export default function WatchSection({ videos = DEFAULT_VIDEOS }: WatchSectionPr
                   src={firstRow[1].thumbnail}
                   alt={firstRow[1].title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 66vw"
+                  sizes="(max-width: 768px) 100vw, 60vw"
                   priority={true}
                   className="object-cover"
                   quality={80}
@@ -268,42 +269,84 @@ export default function WatchSection({ videos = DEFAULT_VIDEOS }: WatchSectionPr
         )}
       </div>
       {selectedVideo && (
-        <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4">
-          <div className={`relative max-w-screen-lg mx-auto ${selectedVideo.format === 'vertical' ? 'max-h-screen w-4/5 md:w-2/5' : 'w-full'}`}>
-            <button
-              className="absolute -top-12 right-0 text-white p-2 z-10 hover:text-red-500"
-              onClick={handleCloseModal}
-            >
-              <X className="w-8 h-8" />
-            </button>
-            <div className="relative aspect-video bg-black rounded-lg overflow-hidden shadow-2xl">
-              <video
-                ref={videoRef}
-                src={selectedVideo.videoUrl}
-                poster={selectedVideo.thumbnail}
-                className={`w-full h-full ${selectedVideo.format === 'vertical' ? 'object-contain' : 'object-cover'}`}
-                onClick={togglePlayPause}
-                preload="metadata"
-                playsInline
-              />
-              <div
-                className={`absolute inset-0 flex items-center justify-center ${isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100 bg-black bg-opacity-30'}`}
-                onClick={togglePlayPause}
+        <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center">
+          {/* Contenedor para videos verticales */}
+          {selectedVideo.format === 'vertical' ? (
+            <div className="relative w-full h-full flex flex-col items-center justify-center p-4">
+              <button
+                className="absolute top-4 right-4 text-white p-2 z-10 hover:text-red-500"
+                onClick={handleCloseModal}
               >
-                <div className="w-20 h-20 rounded-full bg-red-600 bg-opacity-80 flex items-center justify-center">
-                  {isPlaying ? (
-                    <Pause className="w-10 h-10 text-white" />
-                  ) : (
-                    <Play className="w-10 h-10 text-white" />
-                  )}
+                <X className="w-8 h-8" />
+              </button>
+
+              <div className="h-[80vh] max-w-[90vw] sm:max-w-[70vw] md:max-w-[40vw] relative bg-black rounded-lg overflow-hidden shadow-2xl">
+                <video
+                  ref={videoRef}
+                  src={selectedVideo.videoUrl}
+                  poster={selectedVideo.thumbnail}
+                  className="h-full w-full object-contain"
+                  onClick={togglePlayPause}
+                  preload="metadata"
+                  playsInline
+                />
+                <div
+                  className={`absolute inset-0 flex items-center justify-center ${isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100 bg-black bg-opacity-30'}`}
+                  onClick={togglePlayPause}
+                >
+                  <div className="w-20 h-20 rounded-full bg-red-600 bg-opacity-80 flex items-center justify-center">
+                    {isPlaying ? (
+                      <Pause className="w-10 h-10 text-white" />
+                    ) : (
+                      <Play className="w-10 h-10 text-white" />
+                    )}
+                  </div>
                 </div>
               </div>
+
+              <div className="mt-4 text-white text-center max-w-md">
+                <h2 className="text-xl font-bold">{selectedVideo.title}</h2>
+                <p className="text-gray-300 text-sm">{selectedVideo.description}</p>
+              </div>
             </div>
-            <div className="mt-4 text-white">
-              <h2 className="text-2xl font-bold">{selectedVideo.title}</h2>
-              <p className="text-gray-300">{selectedVideo.description}</p>
+          ) : (
+            // Contenedor para videos horizontales (mantiene el diseño original)
+            <div className="relative max-w-screen-lg mx-auto p-4">
+              <button
+                className="absolute -top-12 right-0 text-white p-2 z-10 hover:text-red-500"
+                onClick={handleCloseModal}
+              >
+                <X className="w-8 h-8" />
+              </button>
+              <div className="relative aspect-video bg-black rounded-lg overflow-hidden shadow-2xl">
+                <video
+                  ref={videoRef}
+                  src={selectedVideo.videoUrl}
+                  poster={selectedVideo.thumbnail}
+                  className="w-full h-full object-cover"
+                  onClick={togglePlayPause}
+                  preload="metadata"
+                  playsInline
+                />
+                <div
+                  className={`absolute inset-0 flex items-center justify-center ${isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100 bg-black bg-opacity-30'}`}
+                  onClick={togglePlayPause}
+                >
+                  <div className="w-20 h-20 rounded-full bg-red-600 bg-opacity-80 flex items-center justify-center">
+                    {isPlaying ? (
+                      <Pause className="w-10 h-10 text-white" />
+                    ) : (
+                      <Play className="w-10 h-10 text-white" />
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 text-white">
+                <h2 className="text-2xl font-bold">{selectedVideo.title}</h2>
+                <p className="text-gray-300">{selectedVideo.description}</p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
     </section>
