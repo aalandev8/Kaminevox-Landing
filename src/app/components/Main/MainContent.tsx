@@ -2,7 +2,7 @@
 
 export default function MainContent() {
   return (
-    <div className="relative w-full h-[93vh] overflow-hidden">
+    <div className="relative w-full h-[100dvh] overflow-hidden">
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
         autoPlay

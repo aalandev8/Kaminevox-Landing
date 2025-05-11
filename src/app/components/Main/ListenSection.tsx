@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 interface ListenSectionProps {
   soundcloudUrls?: string[];
@@ -42,13 +43,55 @@ export default function ListenSection({
   return (
     <section
       id="listen"
-      className="w-full py-16 min-h-screen flex items-center bg-black overflow-hidden border-b border-gray-300"
+      className="w-full py-16 min-h-screen flex flex-col items-center bg-black overflow-hidden relative"
     >
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="font-mono uppercase tracking-widest text-3xl mb-12 text-white">
-          LISTEN
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <div className="absolute w-full h-full">
+          <Image
+            src="/Textura_Negro.png"
+            alt="Background texture"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority={true}
+          />
         </div>
 
+        <div className="absolute left-0 top-0 w-1/3 h-full opacity-50 hidden md:block">
+          <Image
+            src="/media/fotos/BackgroundDetails.png"
+            alt="Background detail left"
+            fill
+            className="object-contain object-left-top"
+            sizes="33vw"
+            priority={true}
+          />
+        </div>
+
+        {/* Right side background detail - mirror of the left one */}
+        <div className="absolute right-0 top-0 w-1/3 h-full opacity-50 hidden md:block">
+          <Image
+            src="/media/fotos/BackgroundDetails.png"
+            alt="Background detail right"
+            fill
+            className="object-contain object-right-top scale-x-[-1]"
+            sizes="33vw"
+            priority={true}
+          />
+        </div>
+      </div>
+
+      {/* Title at the top right - horizontal */}
+      <div className="container relative z-10 w-full">
+        <div className="flex justify-end mb-8 md:mb-12">
+          <div className="text-red-600 text-5xl md:text-7xl font-bold mr-4 md:mr-8 mt-4 font-aileron">
+            [ LISTEN ]
+          </div>
+        </div>
+      </div>
+
+      {/* Main content container */}
+      <div className="container mx-auto px-4 md:px-24 relative z-10">
         {/* Soundcloud Embed Section */}
         <div className="mb-16">
           <h2 className="font-mono text-xl text-white mb-6 border-l-2 border-red-600 pl-4">Sets & Podcasts</h2>
@@ -56,7 +99,7 @@ export default function ListenSection({
             {soundcloudUrls.map((url, index) => (
               <div
                 key={`soundcloud-${index}`}
-                className="bg-black bg-opacity-70 p-1 rounded shadow-lg"
+                className="bg-black bg-opacity-70 p-1 rounded shadow-lg animate-fade-in animate-once"
               >
                 <iframe
                   width="100%"
@@ -81,7 +124,7 @@ export default function ListenSection({
               return (
                 <div
                   key={`youtube-${index}`}
-                  className="bg-black bg-opacity-70 p-1 rounded shadow-lg aspect-video"
+                  className="bg-black bg-opacity-70 p-1 rounded shadow-lg aspect-video animate-fade-in animate-once"
                 >
                   <iframe
                     width="100%"
