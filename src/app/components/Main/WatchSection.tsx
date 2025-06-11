@@ -42,8 +42,8 @@ const DEFAULT_VIDEOS: VideoItem[] = [
   },
   {
     id: 'video3',
-    title: 'Club showcase',
-    description: 'Live performance',
+    title: 'Kaminevox perfomance at Otro Mundo',
+    description: 'Getting the dance floor pumped up',
     format: 'horizontal',
     thumbnail: '/media/fotos/DanzeriaKaminevox.jpg',
     videoUrl: '/media/videos/OtroMundoClip.mp4',
